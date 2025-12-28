@@ -4,7 +4,7 @@ anio: 1870
 genero: "Zarzuela"
 estado: "disponible"
 es_edicion_critica: true
-creditos: "Revisión: Mar Morán"
+creditos: "Revisión: "
 archivos:
   partitura: "https://example.com/partitura.pdf"
   libreto: "https://example.com/libreto.pdf"
