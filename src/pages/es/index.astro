@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+	title="Cristobal Oudrid - Asociación Cristobal Oudrid"
+	description="Web oficial. Recuperando el legado del maestro de la zarzuela."
+	lang="es"
+>
+	<!-- Hero Section -->
+	<section
+		class="relative h-[80vh] min-h-[600px] flex items-center justify-center bg-ink text-paper overflow-hidden"
+	>
+		<!-- Abstract Background -->
+		<div
+			class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--color-accent-gold)_0%,_transparent_70%)]"
+		>
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent z-10"
+		>
+		</div>
+
+		<div class="relative z-20 text-center px-6 max-w-5xl mx-auto space-y-8">
+			<span
+				class="block text-accent-gold text-lg md:text-xl font-serif tracking-widest uppercase mb-4"
+				>Compositor • Director • Pionero</span
+			>
+			<h1
+				class="text-6xl md:text-8xl lg:text-9xl font-serif font-bold tracking-tight text-paper leading-none"
+			>
+				Cristobal <br />
+				<span class="text-accent-red">Oudrid</span>
+			</h1>
+			<p
+				class="text-xl md:text-2xl font-light opacity-90 max-w-2xl mx-auto text-pretty"
+			>
+				La fuerza del romanticismo español renace en cada nota.
+			</p>
+			<div class="pt-8">
+				<a
+					href="/es/catalogo"
+					class="px-10 py-4 bg-accent-red text-paper font-serif font-bold text-lg rounded-sm hover:bg-white hover:text-ink transition-all duration-500 shadow-lg hover:shadow-accent-gold/20"
+				>
+					Descubrir su Obra
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- About Section -->
+	<section class="py-32 px-6 bg-paper text-ink">
+		<div class="max-w-6xl mx-auto">
+			<div class="grid md:grid-cols-2 gap-16 items-center">
+				<div class="space-y-6">
+					<h2
+						class="text-4xl md:text-5xl font-serif text-accent-red leading-tight"
+					>
+						Un Legado Musical <br />
+						<span class="text-ink">Inmortal</span>
+					</h2>
+					<div class="h-1 w-24 bg-accent-gold"></div>
+				</div>
+				<div
+					class="space-y-6 text-lg font-light leading-relaxed text-justify"
+				>
+					<p>
+						<strong class="text-accent-red"
+							>Cristobal Oudrid y Segura</strong
+						> (1825-1877) no fue solo un compositor; fue el arquitecto
+						de una era. Desde los escenarios de Madrid hasta las plazas
+						de toda España, su música definió el sonido del siglo XIX.
+					</p>
+					<p>
+						Fundador del Teatro de la Zarzuela y maestro de la
+						orquestación, su obra abarca desde la vibrante zarzuela
+						grande hasta sinfonías que rivalizan con el repertorio
+						europeo. Hoy, la Asociación trabaja para que su voz
+						vuelva a resonar con la misma fuerza.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

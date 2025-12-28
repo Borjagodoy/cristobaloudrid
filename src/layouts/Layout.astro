@@ -1,0 +1,168 @@
+---
+import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+import LanguagePicker from "../components/LanguagePicker.astro";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+	title: string;
+	description?: string;
+	lang?: string;
+}
+
+const {
+	title,
+	description = "Asociación Cristobal Oudrid - Promoviendo el legado del compositor.",
+	lang = "es",
+} = Astro.props;
+
+const navItems = [
+	{ label: { es: "Inicio", en: "Home" }, href: { es: "/", en: "/" } },
+	{
+		label: { es: "Biografía", en: "Biography" },
+		href: { es: "/biografia", en: "/biography" },
+	},
+	{
+		label: { es: "Catálogo", en: "Catalog" },
+		href: { es: "/catalogo", en: "/catalog" },
+	},
+	{
+		label: { es: "Asociación", en: "Association" },
+		href: { es: "/asociacion", en: "/association" },
+	},
+	{
+		label: { es: "Contacto", en: "Contact" },
+		href: { es: "/contacto", en: "/contact" },
+	},
+];
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+	<head>
+		<SEO title={title} description={description} lang={lang} />
+		<ClientRouter />
+		<!-- Google Fonts: Playfair Display & Lato -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body class="bg-paper text-ink antialiased flex flex-col min-h-screen">
+		<header
+			class="sticky top-0 z-40 w-full backdrop-blur-md bg-paper/80 border-b border-accent-gold/20"
+		>
+			<div
+				class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
+			>
+				<a
+					href={lang === "es" ? "/es/" : "/en/"}
+					class="text-2xl font-serif font-bold tracking-tight text-accent-red hover:opacity-80 transition-opacity"
+				>
+					C. Oudrid
+				</a>
+
+				<nav class="hidden md:flex gap-8 items-center">
+					{
+						navItems.map((item) => {
+							const isAssociation =
+								item.href.es === "/asociacion";
+							return (
+								<a
+									href={
+										isAssociation && lang === "es"
+											? "/es/hazte-socio"
+											: lang === "es"
+												? `/es${item.href.es}`
+												: `/en${item.href.en}`
+									}
+									class={`text-sm font-bold uppercase tracking-widest transition-colors duration-300 ${
+										isAssociation
+											? "bg-accent-red text-paper px-4 py-2 hover:bg-ink rounded-sm"
+											: "hover:text-accent-gold"
+									}`}
+								>
+									{isAssociation
+										? lang === "es"
+											? "Hazte Socio"
+											: "Become a Member"
+										: lang === "es"
+											? item.label.es
+											: item.label.en}
+								</a>
+							);
+						})
+					}
+				</nav>
+
+				<div class="flex items-center gap-4">
+					<LanguagePicker lang={lang} />
+					<!-- Mobile menu button placeholder -->
+					<button class="md:hidden text-ink hover:text-accent-red">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="1.5"
+							stroke="currentColor"
+							class="w-6 h-6"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+							></path>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</header>
+
+		<main class="flex-grow">
+			<slot />
+		</main>
+
+		<footer
+			class="bg-ink text-paper py-12 px-6 mt-auto border-t-4 border-accent-gold"
+		>
+			<div
+				class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"
+			>
+				<div class="text-center md:text-left">
+					<h3 class="font-serif text-2xl mb-2 text-accent-gold">
+						Asociación Cristobal Oudrid
+					</h3>
+					<p class="font-light text-sm opacity-80">
+						{
+							lang === "es"
+								? "Investigación y recuperación musical dirigida por Mar Morán."
+								: "Musical research and recovery directed by Mar Morán."
+						}
+					</p>
+				</div>
+				<nav class="flex gap-6 text-sm font-light">
+					{
+						navItems.map((item) => (
+							<a
+								href={
+									lang === "es"
+										? `/es${item.href.es}`
+										: `/en${item.href.en}`
+								}
+								class="hover:text-accent-gold transition-colors"
+							>
+								{lang === "es" ? item.label.es : item.label.en}
+							</a>
+						))
+					}
+				</nav>
+				<div class="text-xs opacity-50">
+					&copy; {new Date().getFullYear()} Asociación Cristobal Oudrid.
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

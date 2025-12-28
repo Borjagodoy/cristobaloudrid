@@ -1,0 +1,67 @@
+---
+const { lang = "es" } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const routeMap = {
+    es: {
+        biografia: "biography",
+        asociacion: "association",
+        catalogo: "catalog",
+        contacto: "contact",
+        "": "", // home
+    },
+    en: {
+        biography: "biografia",
+        association: "asociacion",
+        catalog: "catalogo",
+        contact: "contacto",
+        "": "", // home
+    },
+};
+
+let targetPath = "";
+let targetLang = "";
+let label = "";
+
+if (lang === "es") {
+    targetLang = "EN";
+    label = "English";
+
+    // Extract slug from /es/slug
+    const cleanPath = currentPath.replace(/\/$/, ""); // Remove trailing slash
+    const slug = cleanPath.split("/es/")[1] || "";
+
+    const translatedSlug = routeMap.es[slug];
+
+    // If we have a translation, use it. Otherwise fallback to generic replacement (unlikely to work for localized slugs but safe default)
+    if (translatedSlug !== undefined) {
+        targetPath = `/en/${translatedSlug}`;
+        if (translatedSlug) targetPath += "/"; // Add trailing slash for non-home
+    } else {
+        targetPath = currentPath.replace("/es", "/en");
+    }
+} else {
+    targetLang = "ES";
+    label = "Español";
+
+    // Extract slug from /en/slug
+    const cleanPath = currentPath.replace(/\/$/, "");
+    const slug = cleanPath.split("/en/")[1] || "";
+
+    const translatedSlug = routeMap.en[slug];
+
+    if (translatedSlug !== undefined) {
+        targetPath = `/es/${translatedSlug}`;
+        if (translatedSlug) targetPath += "/";
+    } else {
+        targetPath = currentPath.replace("/en", "/es");
+    }
+}
+---
+
+<a
+    href={targetPath}
+    class="fixed md:static top-20 right-6 z-50 px-4 py-2 bg-paper/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none border border-ink/10 md:border-0 rounded-full font-serif font-bold text-sm text-ink hover:text-accent-red transition-colors duration-300"
+>
+    {targetLang}
+</a>

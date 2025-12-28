@@ -1,0 +1,85 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+    title="Cristobal Oudrid - Cristobal Oudrid Association"
+    description="Official website. Recovering the legacy of the master of zarzuela."
+    lang="en"
+>
+    <!-- Hero Section -->
+    <section
+        class="relative h-[80vh] min-h-[600px] flex items-center justify-center bg-ink text-paper overflow-hidden"
+    >
+        <!-- Abstract Background -->
+        <div
+            class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--color-accent-gold)_0%,_transparent_70%)]"
+        >
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent z-10"
+        >
+        </div>
+
+        <div class="relative z-20 text-center px-6 max-w-5xl mx-auto space-y-8">
+            <span
+                class="block text-accent-gold text-lg md:text-xl font-serif tracking-widest uppercase mb-4"
+                >Composer • Conductor • Pioneer</span
+            >
+            <h1
+                class="text-6xl md:text-8xl lg:text-9xl font-serif font-bold tracking-tight text-paper leading-none"
+            >
+                Cristobal <br />
+                <span class="text-accent-red">Oudrid</span>
+            </h1>
+            <p
+                class="text-xl md:text-2xl font-light opacity-90 max-w-2xl mx-auto text-pretty"
+            >
+                The strength of Spanish romanticism reborn in every note.
+            </p>
+            <div class="pt-8">
+                <a
+                    href="/en/catalog"
+                    class="px-10 py-4 bg-accent-red text-paper font-serif font-bold text-lg rounded-sm hover:bg-white hover:text-ink transition-all duration-500 shadow-lg hover:shadow-accent-gold/20"
+                >
+                    Discover his Work
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-32 px-6 bg-paper text-ink">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="space-y-6">
+                    <h2
+                        class="text-4xl md:text-5xl font-serif text-accent-red leading-tight"
+                    >
+                        An Immortal <br />
+                        <span class="text-ink">Musical Legacy</span>
+                    </h2>
+                    <div class="h-1 w-24 bg-accent-gold"></div>
+                </div>
+                <div
+                    class="space-y-6 text-lg font-light leading-relaxed text-justify"
+                >
+                    <p>
+                        <strong class="text-accent-red"
+                            >Cristobal Oudrid y Segura</strong
+                        > (1825-1877) was not just a composer; he was the architect
+                        of an era. From the stages of Madrid to town squares across
+                        Spain, his music defined the sound of the 19th century.
+                    </p>
+                    <p>
+                        Founder of the Teatro de la Zarzuela and a master of
+                        orchestration, his work ranges from vibrant grand
+                        zarzuela to symphonies that rival the European
+                        repertoire. Today, the Association works to ensure his
+                        voice resonates again with the same strength.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

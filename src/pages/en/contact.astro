@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+    title="Contact - Cristobal Oudrid Association"
+    description="Get in touch with us."
+    lang="en"
+>
+    <main class="py-24 px-6 max-w-4xl mx-auto">
+        <header class="mb-16 text-center">
+            <h1
+                class="text-5xl md:text-6xl font-serif font-bold text-accent-red mb-6"
+            >
+                Contact Us
+            </h1>
+            <p class="text-xl font-light text-ink/70">
+                We are delighted to assist you.
+            </p>
+        </header>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <p class="font-light leading-relaxed">
+                    If you have any questions about the archive, wish to
+                    collaborate with the Association, or need information to
+                    perform Oudrid's works, please do not hesitate to write to
+                    us.
+                </p>
+                <div class="space-y-2">
+                    <p
+                        class="font-bold text-accent-gold uppercase tracking-widest text-sm"
+                    >
+                        Email
+                    </p>
+                    <a
+                        href="mailto:info@asociacionoudrid.org"
+                        class="text-xl font-serif hover:text-accent-red transition-colors"
+                        >info@asociacionoudrid.org</a
+                    >
+                </div>
+                <div class="space-y-2">
+                    <p
+                        class="font-bold text-accent-gold uppercase tracking-widest text-sm"
+                    >
+                        Address
+                    </p>
+                    <p class="font-serif text-lg">Madrid, Spain</p>
+                </div>
+            </div>
+
+            <form class="space-y-6 bg-paper border border-ink/5 p-8 shadow-sm">
+                <div class="space-y-2">
+                    <label
+                        for="name"
+                        class="block text-sm font-bold uppercase tracking-wide text-ink/60"
+                        >Name</label
+                    >
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="w-full bg-ink/5 border-b-2 border-transparent focus:border-accent-red px-4 py-3 outline-none transition-colors"
+                        placeholder="Your full name"
+                        required
+                    />
+                </div>
+                <div class="space-y-2">
+                    <label
+                        for="email"
+                        class="block text-sm font-bold uppercase tracking-wide text-ink/60"
+                        >Email</label
+                    >
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="w-full bg-ink/5 border-b-2 border-transparent focus:border-accent-red px-4 py-3 outline-none transition-colors"
+                        placeholder="Your email address"
+                        required
+                    />
+                </div>
+                <div class="space-y-2">
+                    <label
+                        for="message"
+                        class="block text-sm font-bold uppercase tracking-wide text-ink/60"
+                        >Message</label
+                    >
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        class="w-full bg-ink/5 border-b-2 border-transparent focus:border-accent-red px-4 py-3 outline-none transition-colors"
+                        placeholder="How can we help you?"
+                        required></textarea>
+                </div>
+                <button
+                    type="submit"
+                    class="w-full py-3 bg-accent-gold text-paper font-serif font-bold text-lg hover:bg-accent-red transition-colors duration-300"
+                >
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </main>
+</Layout>
