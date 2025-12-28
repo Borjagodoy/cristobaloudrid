@@ -1,6 +1,14 @@
 ---
 import "../styles/global.css";
+// Font Optimization: Local imports
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/playfair-display/400.css";
+import "@fontsource/playfair-display/700.css";
+
 import SEO from "../components/SEO.astro";
+import SchemaOrg from "../components/SchemaOrg.astro";
 import LanguagePicker from "../components/LanguagePicker.astro";
 import { ClientRouter } from "astro:transitions";
 
@@ -41,14 +49,9 @@ const navItems = [
 <html lang={lang} class="scroll-smooth">
 	<head>
 		<SEO title={title} description={description} lang={lang} />
+		<SchemaOrg />
 		<ClientRouter />
-		<!-- Google Fonts: Playfair Display & Lato -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-			rel="stylesheet"
-		/>
+		<!-- Font Optimization: Self-hosted via @fontsource -->
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body class="bg-paper text-ink antialiased flex flex-col min-h-screen">
