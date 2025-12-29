@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://asociacioncristobaloudrid.org',
+  site: 'https://cristobaloudrid.org',
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],

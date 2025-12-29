@@ -1,0 +1,59 @@
+---
+import LiteYouTube from "./LiteYouTube.astro";
+import AudioCard from "./AudioCard.astro";
+
+interface MediaItem {
+    type: "youtube" | "spotify" | "soundcloud";
+    id: string;
+    title: string;
+}
+
+interface Props {
+    media: MediaItem[];
+}
+
+const { media } = Astro.props;
+
+const videos = media.filter((item) => item.type === "youtube");
+const audio = media.filter((item) => item.type !== "youtube");
+---
+
+<div class="media-gallery space-y-12">
+    <!-- Videos Section -->
+    {
+        videos.length > 0 && (
+            <div class="space-y-6">
+                <h3 class="font-serif font-bold text-2xl text-ink flex items-center gap-3">
+                    <span class="w-8 h-px bg-accent-gold" />
+                    Videos
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    {videos.map((video) => (
+                        <LiteYouTube videoId={video.id} title={video.title} />
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    <!-- Audio Section -->
+    {
+        audio.length > 0 && (
+            <div class="space-y-6">
+                <h3 class="font-serif font-bold text-2xl text-ink flex items-center gap-3">
+                    <span class="w-8 h-px bg-accent-gold" />
+                    Audio
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    {audio.map((track) => (
+                        <AudioCard
+                            type={track.type as "spotify" | "soundcloud"}
+                            id={track.id}
+                            title={track.title}
+                        />
+                    ))}
+                </div>
+            </div>
+        )
+    }
+</div>

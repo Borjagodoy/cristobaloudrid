@@ -13,6 +13,11 @@ const obrasCollection = defineCollection({
         }).optional(),
         es_edicion_critica: z.boolean().default(false),
         creditos: z.string().optional(),
+        multimedia: z.array(z.object({
+            type: z.enum(['youtube', 'spotify', 'soundcloud']),
+            id: z.string(), // YouTube ID or Spotify/SoundCloud Embed URL/ID
+            title: z.string(),
+        })).optional(),
     }),
 });
 

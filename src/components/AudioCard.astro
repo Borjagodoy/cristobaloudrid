@@ -1,0 +1,108 @@
+---
+interface Props {
+    type: "spotify" | "soundcloud";
+    id: string; // For Spotify: track/album ID. For SoundCloud: Embed Code/URL part
+    title: string;
+}
+
+const { type, id, title } = Astro.props;
+
+// Helper to determine initial cover image (placeholder)
+// In a real app, you might fetch metadata, but for static, we can use a generic or specific prop
+// For this facade, we'll use a generic stylish placeholder if no specific image is provided.
+const coverImage =
+    type === "spotify"
+        ? "https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg"
+        : "https://a-v2.sndcdn.com/assets/images/sc-icons/ios-a62dfc8f.png";
+
+const bgColor = type === "spotify" ? "bg-[#1DB954]" : "bg-[#FF5500]";
+---
+
+<div
+    class="audio-card-facade relative w-full h-24 bg-paper border border-ink/10 rounded-sm shadow-sm overflow-hidden group cursor-pointer transition-all hover:shadow-md"
+    data-type={type}
+    data-id={id}
+    data-title={title}
+>
+    <div class="flex items-center h-full">
+        <!-- Icon/Cover -->
+        <div
+            class={`w-24 h-full ${bgColor} flex items-center justify-center p-4 flex-shrink-0`}
+        >
+            <img
+                src={coverImage}
+                alt={type}
+                class="w-10 h-10 opacity-90 invert brightness-0"
+            />
+        </div>
+
+        <!-- Info -->
+        <div class="flex-grow px-6 py-3 flex justify-between items-center">
+            <div>
+                <p
+                    class="text-xs font-bold uppercase tracking-widest text-ink/40 mb-1"
+                >
+                    {type}
+                </p>
+                <h3
+                    class="font-serif font-bold text-ink text-lg truncate max-w-[200px] md:max-w-xs"
+                >
+                    {title}
+                </h3>
+            </div>
+
+            <!-- Play Button -->
+            <div
+                class="w-10 h-10 rounded-full border-2 border-ink/10 flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-paper transition-colors"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-5 h-5 ml-1"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll(".audio-card-facade").forEach((card) => {
+        card.addEventListener("click", () => {
+            const type = card.getAttribute("data-type");
+            const id = card.getAttribute("data-id");
+            const title = card.getAttribute("data-title");
+
+            let iframeSrc = "";
+
+            if (type === "spotify") {
+                // Assuming ID is "track/xyz" or "album/xyz"
+                // Or if user just passes ID, default to track. Let's assume full resource part passed e.g. "track/4uLU6hMCjMI75M1A2t6QLB"
+                iframeSrc = `https://open.spotify.com/embed/${id}?utm_source=generator&theme=0`;
+            } else if (type === "soundcloud") {
+                // SoundCloud embed typically requires full encoded URL or track ID.
+                // For simplicity in this demo, assuming ID is the full track ID numerical
+                iframeSrc = `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${id}&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`;
+            }
+
+            const iframe = document.createElement("iframe");
+            iframe.style.width = "100%";
+            iframe.style.height = "100%"; // Will need to adjust container height potentially, or keep compact
+            iframe.style.border = "none";
+            iframe.allow =
+                "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+            iframe.src = iframeSrc;
+
+            // Transform container to hold iframe properly
+            // Spotify standard compact is 80px or 152px. Our card is h-24 (96px).
+            card.innerHTML = "";
+            card.appendChild(iframe);
+            card.classList.remove("cursor-pointer", "group", "hover:shadow-md"); // Remove interactive card styles
+        });
+    });
+</script>

@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import LiteYouTube from "../../components/LiteYouTube.astro";
+import EventsList from "../../components/EventsList.astro";
+import { videos, events } from "../../data/media";
+---
+
+<Layout
+    title="Música y Eventos - Cristóbal Oudrid"
+    description="Disfruta de la música de Cristóbal Oudrid y consulta los próximos eventos."
+    lang="es"
+>
+    <!-- Hero -->
+    <section class="bg-ink text-paper py-20 px-6">
+        <div class="max-w-6xl mx-auto text-center animate-fade-in-up">
+            <h1
+                class="text-5xl md:text-7xl font-serif font-bold text-accent-gold mb-6"
+            >
+                Música
+            </h1>
+            <p class="text-xl font-light opacity-80 max-w-2xl mx-auto">
+                La obra de Oudrid cobra vida de nuevo en los escenarios y en
+                formato digital.
+            </p>
+        </div>
+    </section>
+
+    <!-- Video Gallery -->
+    <section class="py-20 px-6 bg-paper">
+        <div class="max-w-6xl mx-auto">
+            <h2
+                class="text-3xl font-serif font-bold text-ink mb-12 border-b-2 border-accent-gold/20 pb-4 inline-block"
+            >
+                Galería Multimedia
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {
+                    videos.map((video) => (
+                        <LiteYouTube
+                            videoId={video.videoId}
+                            title={video.title}
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Agenda -->
+    <section class="py-20 px-6 bg-white border-t border-ink/5">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-serif font-bold text-accent-red mb-4">
+                    Próximos Eventos
+                </h2>
+                <p class="text-ink/60">
+                    No te pierdas las próximas representaciones y conciertos.
+                </p>
+            </div>
+
+            <EventsList events={events} lang="es" />
+        </div>
+    </section>
+</Layout>

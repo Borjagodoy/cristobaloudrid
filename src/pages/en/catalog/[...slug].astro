@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import MembershipCard from "../../../components/MembershipCard.astro";
+import MediaGallery from "../../../components/MediaGallery.astro";
 
 export async function getStaticPaths() {
     const obras = await getCollection("obras");
@@ -15,8 +16,16 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-const { titulo, anio, genero, estado, es_edicion_critica, creditos, archivos } =
-    entry.data;
+const {
+    titulo,
+    anio,
+    genero,
+    estado,
+    es_edicion_critica,
+    creditos,
+    archivos,
+    multimedia,
+} = entry.data;
 
 const statusColor =
     estado === "disponible" ? "text-green-600" : "text-yellow-600";
@@ -49,8 +58,9 @@ const statusLabel = {
                     <div class="flex items-center gap-3 mb-4">
                         <span
                             class="px-3 py-1 bg-ink/5 text-ink text-xs font-bold uppercase tracking-wider rounded-full"
-                            >{genero}</span
                         >
+                            {genero}
+                        </span>
                         <span
                             class={`font-bold text-sm flex items-center gap-1 ${statusColor}`}
                         >
@@ -61,11 +71,12 @@ const statusLabel = {
                                 aria-hidden="true"
                                 viewBox="0 0 20 20"
                                 fill="currentColor"
-                                ><path
+                            >
+                                <path
                                     fill-rule="evenodd"
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z"
-                                    clip-rule="evenodd"></path></svg
-                            >
+                                    clip-rule="evenodd"></path>
+                            </svg>
                             {statusLabel}
                         </span>
                     </div>
@@ -110,6 +121,13 @@ const statusLabel = {
                 class="md:col-span-2 prose prose-stone prose-lg prose-headings:font-serif prose-headings:text-ink prose-a:text-accent-red"
             >
                 <Content />
+                {
+                    multimedia && (
+                        <div class="pt-12 border-t border-ink/10">
+                            <MediaGallery media={multimedia} />
+                        </div>
+                    )
+                }
             </article>
 
             <!-- Sidebar / CTA -->
@@ -174,7 +192,6 @@ const statusLabel = {
                                     )}
                                 </div>
                             </div>
-
                             <MembershipCard
                                 title="Support our work"
                                 ctaText="Become a Member"

@@ -5,6 +5,13 @@ genero: "Zarzuela"
 estado: "disponible"
 es_edicion_critica: true
 creditos: "Revisión: "
+multimedia:
+  - type: "youtube"
+    id: "dQw4w9WgXcQ"
+    title: "Obertura - El Molinero de Subiza"
+  - type: "spotify"
+    id: "track/4uLU6hMCjMI75M1A2t6QLB"
+    title: "Preludio - Grabación Histórica"
 archivos:
   partitura: "https://example.com/partitura.pdf"
   libreto: "https://example.com/libreto.pdf"

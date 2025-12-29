@@ -5,6 +5,13 @@ genero: "Zarzuela"
 estado: "disponible"
 es_edicion_critica: true
 creditos: "Revision: "
+multimedia:
+  - type: "youtube"
+    id: "dQw4w9WgXcQ"
+    title: "Overture - El Molinero de Subiza"
+  - type: "spotify"
+    id: "track/4uLU6hMCjMI75M1A2t6QLB"
+    title: "Prelude - Historical Recording"
 archivos:
   partitura: "https://example.com/score.pdf"
   libreto: "https://example.com/libretto.pdf"
